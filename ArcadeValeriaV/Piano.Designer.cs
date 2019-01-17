@@ -34,24 +34,62 @@
             this.tmrSecondMove = new System.Windows.Forms.Timer(this.components);
             this.tmrThirdMove = new System.Windows.Forms.Timer(this.components);
             this.tmrFourthMove = new System.Windows.Forms.Timer(this.components);
+            this.lblScore = new System.Windows.Forms.Label();
+            this.grbLose = new System.Windows.Forms.GroupBox();
+            this.btnMain = new System.Windows.Forms.Button();
             this.picTile4 = new System.Windows.Forms.PictureBox();
             this.picTile3 = new System.Windows.Forms.PictureBox();
             this.picTile2 = new System.Windows.Forms.PictureBox();
             this.picTile1 = new System.Windows.Forms.PictureBox();
-            this.picLose = new System.Windows.Forms.PictureBox();
-            this.btnMain = new System.Windows.Forms.Button();
-            this.picCoin = new System.Windows.Forms.PictureBox();
+            this.player3 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.grbLose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTile4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTile3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTile2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTile1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCoin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player3)).BeginInit();
             this.SuspendLayout();
             // 
             // tmrFirstMove
             // 
             this.tmrFirstMove.Tick += new System.EventHandler(this.tmrFirstMove_Tick_1);
+            // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblScore.Font = new System.Drawing.Font("Cooper Black", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblScore.Location = new System.Drawing.Point(334, 9);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(59, 17);
+            this.lblScore.TabIndex = 31;
+            this.lblScore.Text = "Coins: ";
+            // 
+            // grbLose
+            // 
+            this.grbLose.BackgroundImage = global::ArcadeValeriaV.Properties.Resources.GameOver;
+            this.grbLose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.grbLose.Controls.Add(this.player3);
+            this.grbLose.Controls.Add(this.btnMain);
+            this.grbLose.Location = new System.Drawing.Point(1, -3);
+            this.grbLose.Name = "grbLose";
+            this.grbLose.Size = new System.Drawing.Size(403, 484);
+            this.grbLose.TabIndex = 32;
+            this.grbLose.TabStop = false;
+            // 
+            // btnMain
+            // 
+            this.btnMain.BackColor = System.Drawing.Color.Maroon;
+            this.btnMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMain.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMain.Location = new System.Drawing.Point(144, 256);
+            this.btnMain.Name = "btnMain";
+            this.btnMain.Size = new System.Drawing.Size(85, 35);
+            this.btnMain.TabIndex = 31;
+            this.btnMain.Text = "MainMenu";
+            this.btnMain.UseVisualStyleBackColor = false;
+            this.btnMain.Click += new System.EventHandler(this.btnMain_Click_2);
             // 
             // picTile4
             // 
@@ -101,42 +139,16 @@
             this.picTile1.TabStop = false;
             this.picTile1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // picLose
+            // player3
             // 
-            this.picLose.BackColor = System.Drawing.Color.Transparent;
-            this.picLose.Image = ((System.Drawing.Image)(resources.GetObject("picLose.Image")));
-            this.picLose.Location = new System.Drawing.Point(66, 201);
-            this.picLose.Name = "picLose";
-            this.picLose.Size = new System.Drawing.Size(273, 79);
-            this.picLose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLose.TabIndex = 24;
-            this.picLose.TabStop = false;
-            // 
-            // btnMain
-            // 
-            this.btnMain.BackColor = System.Drawing.Color.Maroon;
-            this.btnMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMain.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnMain.Location = new System.Drawing.Point(163, 280);
-            this.btnMain.Name = "btnMain";
-            this.btnMain.Size = new System.Drawing.Size(85, 35);
-            this.btnMain.TabIndex = 28;
-            this.btnMain.Text = "MainMenu";
-            this.btnMain.UseVisualStyleBackColor = false;
-            this.btnMain.Click += new System.EventHandler(this.btnMain_Click);
-            // 
-            // picCoin
-            // 
-            this.picCoin.BackColor = System.Drawing.Color.Transparent;
-            this.picCoin.Image = global::ArcadeValeriaV.Properties.Resources.coin1;
-            this.picCoin.Location = new System.Drawing.Point(209, 2);
-            this.picCoin.Name = "picCoin";
-            this.picCoin.Size = new System.Drawing.Size(39, 41);
-            this.picCoin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picCoin.TabIndex = 29;
-            this.picCoin.TabStop = false;
-            this.picCoin.Tag = "coin";
-            this.picCoin.Click += new System.EventHandler(this.picCoin_Click);
+            this.player3.Enabled = true;
+            this.player3.Location = new System.Drawing.Point(164, 231);
+            this.player3.Name = "player3";
+            this.player3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player3.OcxState")));
+            this.player3.Size = new System.Drawing.Size(75, 23);
+            this.player3.TabIndex = 38;
+            this.player3.Visible = false;
+            this.player3.Enter += new System.EventHandler(this.player3_Enter);
             // 
             // Piano
             // 
@@ -144,9 +156,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(405, 480);
-            this.Controls.Add(this.picCoin);
-            this.Controls.Add(this.btnMain);
-            this.Controls.Add(this.picLose);
+            this.Controls.Add(this.grbLose);
+            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.picTile4);
             this.Controls.Add(this.picTile3);
             this.Controls.Add(this.picTile2);
@@ -155,13 +166,14 @@
             this.Text = "Piano";
             this.Load += new System.EventHandler(this.Piano_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.clickForm);
+            this.grbLose.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picTile4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTile3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTile2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTile1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCoin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -175,8 +187,9 @@
         private System.Windows.Forms.Timer tmrSecondMove;
         private System.Windows.Forms.Timer tmrThirdMove;
         private System.Windows.Forms.Timer tmrFourthMove;
-        private System.Windows.Forms.PictureBox picLose;
+        private System.Windows.Forms.Label lblScore;
+        private System.Windows.Forms.GroupBox grbLose;
         private System.Windows.Forms.Button btnMain;
-        private System.Windows.Forms.PictureBox picCoin;
+        private AxWMPLib.AxWindowsMediaPlayer player3;
     }
 }

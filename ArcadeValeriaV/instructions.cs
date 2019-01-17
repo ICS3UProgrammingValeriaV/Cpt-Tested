@@ -13,7 +13,7 @@ namespace ArcadeValeriaV
     public partial class instructions : Form
     {
         //declare global variables
-        int  money = 0;
+        int  money;
         int birdCounter = 0;
         const int BIRD_1 = 200;
         const int BIRD_2 = 500;
@@ -58,7 +58,7 @@ namespace ArcadeValeriaV
             //if piano tiles button was pressed, display piano tiles instruction page
             else if (counter == 3)
             {
-                picInstr.Image = Properties.Resources.instrPiano;
+                picInstr.Image = Properties.Resources.pianoinstr;
                 picBird1.Hide();
                 picBird2.Hide();
                 picBird3.Hide();
@@ -98,6 +98,7 @@ namespace ArcadeValeriaV
                 picBird2.Enabled = true;
                 money = money - BIRD_1;
                 lblMoney.Text = "$" + money;
+                lblPrice.Hide();
 
             }
         }
@@ -126,6 +127,7 @@ namespace ArcadeValeriaV
                 picBird3.Enabled = true;
                 money = money - BIRD_2;
                 lblMoney.Text = "$" + money;
+                lblPrice2.Hide();
 
             }
         }

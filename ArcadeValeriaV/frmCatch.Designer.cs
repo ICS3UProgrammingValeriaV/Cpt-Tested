@@ -34,20 +34,28 @@
             this.picCoin = new System.Windows.Forms.PictureBox();
             this.lblScore = new System.Windows.Forms.Label();
             this.lblMissed = new System.Windows.Forms.Label();
-            this.picLose = new System.Windows.Forms.PictureBox();
             this.picJunk = new System.Windows.Forms.PictureBox();
             this.picHealth2 = new System.Windows.Forms.PictureBox();
             this.picHealth1 = new System.Windows.Forms.PictureBox();
             this.picBascket = new System.Windows.Forms.PictureBox();
             this.tmrGame = new System.Windows.Forms.Timer(this.components);
+            this.grbLose = new System.Windows.Forms.GroupBox();
             this.btnMain = new System.Windows.Forms.Button();
+            this.player1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.player2 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.player3 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.player4 = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.picDesk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCoin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picJunk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHealth2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHealth1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBascket)).BeginInit();
+            this.grbLose.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.player1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player4)).BeginInit();
             this.SuspendLayout();
             // 
             // picDesk
@@ -99,18 +107,6 @@
             this.lblMissed.TabIndex = 24;
             this.lblMissed.Text = "Coins: ";
             this.lblMissed.Click += new System.EventHandler(this.lblMissed_Click);
-            // 
-            // picLose
-            // 
-            this.picLose.BackColor = System.Drawing.Color.Transparent;
-            this.picLose.Image = ((System.Drawing.Image)(resources.GetObject("picLose.Image")));
-            this.picLose.Location = new System.Drawing.Point(64, 149);
-            this.picLose.Name = "picLose";
-            this.picLose.Size = new System.Drawing.Size(273, 79);
-            this.picLose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLose.TabIndex = 23;
-            this.picLose.TabStop = false;
-            this.picLose.Click += new System.EventHandler(this.picLose_Click);
             // 
             // picJunk
             // 
@@ -169,18 +165,73 @@
             this.tmrGame.Interval = 20;
             this.tmrGame.Tick += new System.EventHandler(this.tmrGame_Tick);
             // 
+            // grbLose
+            // 
+            this.grbLose.BackgroundImage = global::ArcadeValeriaV.Properties.Resources.GameOver;
+            this.grbLose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.grbLose.Controls.Add(this.player4);
+            this.grbLose.Controls.Add(this.player3);
+            this.grbLose.Controls.Add(this.player2);
+            this.grbLose.Controls.Add(this.player1);
+            this.grbLose.Controls.Add(this.btnMain);
+            this.grbLose.Location = new System.Drawing.Point(1, 0);
+            this.grbLose.Name = "grbLose";
+            this.grbLose.Size = new System.Drawing.Size(403, 480);
+            this.grbLose.TabIndex = 31;
+            this.grbLose.TabStop = false;
+            // 
             // btnMain
             // 
             this.btnMain.BackColor = System.Drawing.Color.Maroon;
-            this.btnMain.Font = new System.Drawing.Font("Cooper Black", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMain.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnMain.Location = new System.Drawing.Point(160, 223);
+            this.btnMain.Location = new System.Drawing.Point(144, 256);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(85, 35);
-            this.btnMain.TabIndex = 27;
+            this.btnMain.TabIndex = 31;
             this.btnMain.Text = "MainMenu";
             this.btnMain.UseVisualStyleBackColor = false;
-            this.btnMain.Click += new System.EventHandler(this.btnMain_Click);
+            this.btnMain.Click += new System.EventHandler(this.btnMain_Click_1);
+            // 
+            // player1
+            // 
+            this.player1.Enabled = true;
+            this.player1.Location = new System.Drawing.Point(-7, 62);
+            this.player1.Name = "player1";
+            this.player1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player1.OcxState")));
+            this.player1.Size = new System.Drawing.Size(75, 23);
+            this.player1.TabIndex = 32;
+            this.player1.Visible = false;
+            // 
+            // player2
+            // 
+            this.player2.Enabled = true;
+            this.player2.Location = new System.Drawing.Point(0, 91);
+            this.player2.Name = "player2";
+            this.player2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player2.OcxState")));
+            this.player2.Size = new System.Drawing.Size(75, 23);
+            this.player2.TabIndex = 33;
+            this.player2.Visible = false;
+            // 
+            // player3
+            // 
+            this.player3.Enabled = true;
+            this.player3.Location = new System.Drawing.Point(0, 120);
+            this.player3.Name = "player3";
+            this.player3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player3.OcxState")));
+            this.player3.Size = new System.Drawing.Size(75, 23);
+            this.player3.TabIndex = 34;
+            this.player3.Visible = false;
+            // 
+            // player4
+            // 
+            this.player4.Enabled = true;
+            this.player4.Location = new System.Drawing.Point(6, 149);
+            this.player4.Name = "player4";
+            this.player4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player4.OcxState")));
+            this.player4.Size = new System.Drawing.Size(75, 23);
+            this.player4.TabIndex = 35;
+            this.player4.Visible = false;
             // 
             // frmCatch
             // 
@@ -189,11 +240,10 @@
             this.BackgroundImage = global::ArcadeValeriaV.Properties.Resources.park;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(405, 480);
-            this.Controls.Add(this.btnMain);
+            this.Controls.Add(this.grbLose);
             this.Controls.Add(this.picCoin);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblMissed);
-            this.Controls.Add(this.picLose);
             this.Controls.Add(this.picJunk);
             this.Controls.Add(this.picHealth2);
             this.Controls.Add(this.picHealth1);
@@ -205,11 +255,15 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyisup);
             ((System.ComponentModel.ISupportInitialize)(this.picDesk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCoin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picJunk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHealth2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHealth1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBascket)).EndInit();
+            this.grbLose.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.player1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,12 +275,16 @@
         private System.Windows.Forms.PictureBox picCoin;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label lblMissed;
-        private System.Windows.Forms.PictureBox picLose;
         private System.Windows.Forms.PictureBox picJunk;
         private System.Windows.Forms.PictureBox picHealth2;
         private System.Windows.Forms.PictureBox picHealth1;
         private System.Windows.Forms.PictureBox picBascket;
         private System.Windows.Forms.Timer tmrGame;
+        private System.Windows.Forms.GroupBox grbLose;
         private System.Windows.Forms.Button btnMain;
+        private AxWMPLib.AxWindowsMediaPlayer player2;
+        private AxWMPLib.AxWindowsMediaPlayer player1;
+        private AxWMPLib.AxWindowsMediaPlayer player3;
+        private AxWMPLib.AxWindowsMediaPlayer player4;
     }
 }

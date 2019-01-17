@@ -41,8 +41,15 @@ namespace ArcadeValeriaV
             //cal the restart function
             restartGame();
             //hide the you lose pic
-            picLose.Hide();
+            grbLose.Hide();
             btnMain.Hide();
+
+            //import sound file
+            player1.URL = "flappy bird.wav";
+            player2.URL = "wrong.wav";
+            player3.URL = "lose.wav";
+
+            player1.Ctlcontrols.play();
 
         }
 
@@ -169,18 +176,22 @@ namespace ArcadeValeriaV
 
         private void endGame()
         {
+            player2.Ctlcontrols.play();
+            player1.Ctlcontrols.stop();
+            player3.Ctlcontrols.play();
             //declare the text
             lblCoins.Text = "Coins: " + score;
             //stop the timer
             tmrGame.Stop();
-            picLose.Show();
+            grbLose.Show();
             btnMain.Show();
         }
 
-        private void btnMain_Click(object sender, EventArgs e)
+
+        private void btnMain_Click_1(object sender, EventArgs e)
         {
             //declare local variable
-            frmMenu menu = new frmMenu();
+            frmMenu menu = new frmMenu(score);
             instructions instr = new instructions(0, score);
             Console.WriteLine(score);
             //hide the form
@@ -189,6 +200,10 @@ namespace ArcadeValeriaV
             menu.ShowDialog();
             //when the second form is closed, the main/this form is closed
             this.Close();
+        }
+        private void btnMain_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

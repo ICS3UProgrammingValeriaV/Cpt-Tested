@@ -37,7 +37,7 @@ namespace ArcadeValeriaV
             backgroundMusic.Play();
 
             //create a global variable
-            frmMenu menuForm = new frmMenu();
+            frmMenu menuForm = new frmMenu(0);
 
             const int MAX_FRAMES = 9;
             

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace ArcadeValeriaV
 {
@@ -15,15 +16,17 @@ namespace ArcadeValeriaV
         //declare global variables
         bool goLeft;
         bool goRight;
-        int speed = 8;
+        const int speed = 5;
         int score = 0;
         int missed = 0;
+        int coins = 0;
         int fruitPosition;
         int junkPosition;
         int money = 0;
         Random rndY = new Random();
         Random rndX = new Random();
         Random rndIndex = new Random();
+        
 
         //create two lists of images
         List<Image> fruits = new List<Image>();
@@ -52,8 +55,17 @@ namespace ArcadeValeriaV
             unhealthy.Add(Properties.Resources.pop_corn);
 
             //hide the lose screen
-            picLose.Hide();
+            grbLose.Hide();
             btnMain.Hide();
+
+            //import sound file
+            player1.URL = "catch.wav";
+            player2.URL = "correct.wav";
+            player3.URL = "wrong.wav";
+            player4.URL = "lose.wav";
+
+            //play the background music
+            player1.Ctlcontrols.play();
         }
 
         //Procedure: getFruit
@@ -94,7 +106,7 @@ namespace ArcadeValeriaV
                 if (catchObject is PictureBox && catchObject.Tag == "apple")
                 {
                     //update the text
-                    lblScore.Text = "Caught: " + score;
+                    lblScore.Text = "Coins: " + coins;
                     lblMissed.Text = "Missed: " + missed;
 
                     //set the position
@@ -103,7 +115,6 @@ namespace ArcadeValeriaV
                     //set the intitial variables
                     score = 0;
                     missed = 0;
-                    speed = 3;
                     goLeft = false;
                     goRight = false;
                     //start the timer
@@ -186,7 +197,7 @@ namespace ArcadeValeriaV
         {
 
             //update the text
-            lblScore.Text = "Caught: " + score;
+            lblScore.Text = "Coins: " + coins;
             lblMissed.Text = "Missed: " + missed;
             //if teh go left boolean is true and chicken left is greater than 0
             if (goLeft == true && picBascket.Left > 0)
@@ -230,16 +241,17 @@ namespace ArcadeValeriaV
                         //set the images of the objects
                         picHealth1.Image = getFruit();
                         picHealth2.Image = getFruit();
+
+                        //play right sound
+                        player2.Ctlcontrols.play();
                     }
                     else if (missed == 5)
                     {
-                        picLose.Show();
+                        grbLose.Show();
+                        player1.Ctlcontrols.stop();
+                        player4.Ctlcontrols.play();
                         btnMain.Show();
                         tmrGame.Stop();
-                    }
-                    else if (score == 15 || score == 40 || score == 80)
-                    {
-                        speed = speed + 5;
                     }
 
                 }
@@ -266,22 +278,23 @@ namespace ArcadeValeriaV
                         picJunk.Image = getJunk();
                         missed = missed + 1;
 
+                        //play wrong sound
+                        player3.Ctlcontrols.play();
                     }
                     else if (missed == 5)
                     {
-                        picLose.Show();
+                        grbLose.Show();
+                        player1.Ctlcontrols.stop();
+                        player4.Ctlcontrols.play();
                         btnMain.Show();
                         tmrGame.Stop();
-                    }
-                    else if (score == 15 || score == 40 || score == 80)
-                    {
-                        speed = speed + 5;
                     }
 
                 }
                 //check if the object is an apple
                 else if (catchObject is PictureBox && catchObject.Tag == "coin")
                 {
+                    
                     //move the object down
                     catchObject.Top += speed;
                     if (catchObject.Top + catchObject.Height > this.ClientSize.Height)
@@ -290,28 +303,28 @@ namespace ArcadeValeriaV
                         catchObject.Left = rndX.Next(5, this.ClientSize.Width - catchObject.Width);
 
                     }
+                    //if it collides with the basket increase the score and move up
                     else if (catchObject.Bounds.IntersectsWith(picBascket.Bounds))
                     {
+                        coins = coins + 10;
                         catchObject.Top = rndY.Next(100, 300) * -1;
                         catchObject.Left = rndX.Next(5, this.ClientSize.Width - catchObject.Width);
                         money++;
+                        //play right sound
+                        player2.Ctlcontrols.play();
                     }
-                    else if (score == 15 || score == 40 || score == 80)
-                    {
-                        speed = speed + 5;
-                    }
-
                 }
 
 
             }
         }
 
-        private void btnMain_Click(object sender, EventArgs e)
+
+        private void btnMain_Click_1(object sender, EventArgs e)
         {
             //declare local variable
-            frmMenu menu = new frmMenu();
-            instructions instr = new instructions(0, score);
+            frmMenu menu = new frmMenu(coins);
+            instructions instr = new instructions(0, coins);
             Console.WriteLine(score);
             //hide the form
             this.Hide();
@@ -319,6 +332,11 @@ namespace ArcadeValeriaV
             menu.ShowDialog();
             //when the second form is closed, the main/this form is closed
             this.Close();
+        }
+
+        private void btnMain_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

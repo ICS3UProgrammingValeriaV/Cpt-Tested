@@ -150,7 +150,7 @@
             // 
             // picInstr
             // 
-            this.picInstr.Image = global::ArcadeValeriaV.Properties.Resources.instrPiano;
+            this.picInstr.Image = global::ArcadeValeriaV.Properties.Resources.pianoinstr;
             this.picInstr.Location = new System.Drawing.Point(0, -1);
             this.picInstr.Name = "picInstr";
             this.picInstr.Size = new System.Drawing.Size(286, 395);
